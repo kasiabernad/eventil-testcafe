@@ -27,7 +27,7 @@ test('Login, create event, create tickets ', async t => {
   await t.expect(location.pathname).eql('/events/new');
 
   await t.typeText(event.nameInput, 'Test Event')
-        .typeText(event.slugInput, 'test-event-100012134568913733612')
+        .typeText(event.slugInput, 'test-event-3426443577446545644645')
         .typeText(event.addressInput, 'Warszawa, województwo mazowieckie, Poland')
         .typeText(event.placeInput, 'Stadion Narodowy')
         .typeText(event.descriptionInput, 'This is short description')
@@ -59,7 +59,7 @@ test('Login, create event, create tickets ', async t => {
   await t.typeText(ticket.nameInput, 'Normal Ticket')
           .typeText(ticket.qtyInput, '10')
           .typeText(ticket.priceInput, '0')
-          .click(event.submitButton)
+          .click(ticket.submitButton)
           .wait(500)
 
   await t.click(manageNavLinks.find('a').withText('Go to Event Page'))
@@ -69,7 +69,14 @@ test('Login, create event, create tickets ', async t => {
   const registerLink = await Selector('div.register > a');
   await t.click(registerLink)
           .wait(500)
+  await t.click(ticket.TicketSelect)
+        .click(ticket.TicketSelectOption.withText('1'))
+        .wait(500)
+        .click(ticket.registerButton)
+        .wait(500)
+        .click(ticket.orderButton)
 
+  await t.expect(ticket.result.innerText).contains('You have successfuly bought ticket(s)')
 });
 
 // test('Text typing basics', async t => {
