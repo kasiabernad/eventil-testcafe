@@ -1,0 +1,15 @@
+{
+  "name": "features-tests",
+  "version": "1.0.0",
+  "description": "Eventil features tests",
+  "main": "test.js",
+  "scripts": {
+    "test": "testcafe chrome test.js -e"
+  },
+  "author": "Eventil",
+  "license": "MIT",
+  "homepage": "https://eventil.com",
+  "devDependencies": {
+    "testcafe": "*"
+  }
+}
